@@ -20,7 +20,7 @@
 
 ## Project Description
 
-We are excited to develop a Rummy for Dummies cardf game app. Have you ever had a deck of cards and a few friends but nobody knows how to play any games?! the absolute worst. Our app will teach you how to play a very fun cardgame with a few friends or by yourself so you can enjoy some high octane game play!  
+We are excited to develop a Rummy for Dummies card game app. Have you ever had a deck of cards and a few friends but nobody knows how to play any games?! the absolute worst. Our app will teach you how to play a very fun cardgame with a few friends or by yourself so you can enjoy some high octane game play!  
 
 ## API
 
@@ -78,7 +78,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Bulding Base App structure| H | 30hrs | hrs | hrs |
 | Project Planning | 3H | hrs | hrs | hrs- |
 | Backend | H | 6hrs | hrs | hrs |
-| Total | H | 40hrs| hrs | hrs |
+| Total | H | 48hrs| hrs | hrs |
 
 ## Additional Libraries
 Reactstrap or bootstrap for modals and warnings 
