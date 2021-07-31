@@ -1,6 +1,7 @@
 import AboutUs from './pages/AboutUs';
 import './App.css';
 import SplashPage from './pages/Splash';
+import Footer from './components/Footer'
 import {Switch, Route, Redirect} from 'react-router-dom'
 
 function App() {
@@ -11,9 +12,9 @@ function App() {
       <Redirect to='/login' />
       </Route> 
     <SplashPage />
-
-    <AboutUs />
+    <Route path ='/about'><AboutUs /></Route>
     </Switch>
+    <footer><Footer/></footer>
     </div>
   );
 }
