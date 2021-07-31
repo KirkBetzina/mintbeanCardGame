@@ -21,7 +21,7 @@
               [name]: event.target.value
             })
           }
-          React.useEffect(() => {
+          useEffect(() => {
             
           }, []);
       

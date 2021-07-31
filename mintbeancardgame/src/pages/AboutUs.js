@@ -6,12 +6,12 @@ const AboutUs = () => {
         <div className='aboutus'>
             <div className='nav'>
                 <Link to='/'><button>Home</button></Link>
-                <button>Login</button>
+                {/* <button>Login</button> */}
                 <Link to='/play'><button>Play</button></Link>
             </div>
             <h1>About The Creators!</h1>
                 <div className='tony'>
-                    <img src='https://media-exp1.licdn.com/dms/image/C4E03AQHdn0UtVIY5YQ/profile-displayphoto-shrink_800_800/0/1617828050557?e=1632960000&v=beta&t=4pxSrvOWo_ic5iMs_E7lWPSeSI6lgySdSa6jjmK6sDI'/>
+                    <img className='about-images' src='https://media-exp1.licdn.com/dms/image/C4E03AQHdn0UtVIY5YQ/profile-displayphoto-shrink_800_800/0/1617828050557?e=1632960000&v=beta&t=4pxSrvOWo_ic5iMs_E7lWPSeSI6lgySdSa6jjmK6sDI'/>
                     <a href='https://www.linkedin.com/in/tony-shifflett-4bb60220a/'>Tony's linkedin</a>
                     <p>I’m a full stack developer with multi-industry client-facing experience in dynamic environments. I bring focus, flexibility, and a passion for learning to my projects, and am fully comfortable in challenging and time-sensitive workspaces.</p>
                 </div>
