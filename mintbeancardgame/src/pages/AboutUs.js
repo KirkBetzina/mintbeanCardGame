@@ -1,12 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const AboutUs = () => {
     return(
         <div className='aboutus'>
             <div className='nav'>
-                <btn>Home</btn>
-                <btn>Login</btn>
-                <btn>Main</btn>
+                <Link to='/'><button>Home</button></Link>
+                <button>Login</button>
+                <Link to='/play'><button>Play</button></Link>
             </div>
             <h1>About The Creators!</h1>
                 <div className='tony'>
