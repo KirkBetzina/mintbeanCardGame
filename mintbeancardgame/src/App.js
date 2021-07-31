@@ -8,21 +8,21 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 function App() {
   return (
     <div className="App">
-    <Switch>
-      {/* <Route exact path='/'>
-      <Redirect to='/login' />
-      </Route>  */}
-    <Route exact path='/'>
-      <SplashPage />
-    </Route>
-    <Route path='/play'>
-      <Main/>
-    </Route>
-    <Route path ='/about'>
-      <AboutUs />
-    </Route>
-    </Switch>
-    <Footer/>
+      <Switch>
+        {/* <Route exact path='/'>
+        <Redirect to='/login' />
+        </Route>  */}
+      <Route exact path='/'>
+        <SplashPage />
+      </Route>
+      <Route path='/play'>
+        <Main/>
+      </Route>
+      <Route path ='/about'>
+        <AboutUs />
+      </Route>
+      </Switch>
+      <Footer/>
     </div>
   );
 }
