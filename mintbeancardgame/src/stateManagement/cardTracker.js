@@ -9,9 +9,17 @@ export const player1Slice = createSlice({
     },
 
     reducers: {
-        addToScore: (state, action)=>{},
-        addToHand:(state, action)=>{},
-        discard:(state, action)=>{},
+        addToScore: (state, action)=>{
+            state.score += action.payload;
+        },
+        addToHand:(state, action)=>{
+            //this assumes action.payload is an array of cards
+            state.hand = state.hand.concat(action.payload);
+        },
+        discard:(state, action)=>{
+            //assuming action.payload is an array of cards
+            state.hand = state.hand.filter((card)=>!action.payload.includes(card));
+        },
         playCards:(state, action)=>{}
     }
 })
@@ -24,20 +32,35 @@ export const player2Slice = createSlice({
     },
 
     reducers: {
-        addToScore: (state, action)=>{},
-        addToHand:(state, action)=>{},
-        discard:(state, action)=>{},
+        addToScore: (state, action)=>{
+            state.score += action.payload;
+        },
+        addToHand:(state, action)=>{
+            //this assumes action.payload is an array of cards
+            state.hand = state.hand.concat(action.payload);
+        },
+        discard:(state, action)=>{
+            //assuming action.payload is an array of cards
+            state.hand = state.hand.filter((card)=>!action.payload.includes(card));
+        },
         playCards:(state, action)=>{}
     }
 })
 
 export const discardPileSlice = createSlice({
     name: "discardPile",
-    initialState: [],
+    initialState: {
+       discardPile: []
+    },
     reducers: {
-        addToDiscard: (state, action)=>{},
-        takeFromDiscard: (state, action)=>{}
+        addToDiscard: (state, action)=>{
+            state.discardPile = state.discardPile.concat(action.payload);
+        },
+        takeFromDiscard: (state, action)=>{
+            state.discardPile = state.discardPile.fileter((card)=>!action.payload.includes(card))
+        }
     }
 })
 
 //exports here
+
