@@ -32,15 +32,15 @@
                 <Form inline>
                 <FormGroup >
                     <Label for="exampleUsername" hidden>Username</Label>
-                    <Input onChange={handleChange} type="username" name="username" id="exampleUsername" placeholder="Username" />
+                    <Input className='form-input' onChange={handleChange} type="username" name="username" id="exampleUsername" placeholder="Username" />
                 </FormGroup>
                 {' '}
                 <FormGroup >
                     <Label for="examplePassword" hidden>Password</Label>
-                    <Input onChange={handleChange} type="password" name="password" id="examplePassword" placeholder="Password" />
+                    <Input className='form-input' onChange={handleChange} type="password" name="password" id="examplePassword" placeholder="Password" />
                 </FormGroup>
                 {' '}
-                <Button className="btn btn-med btn-danger btn-block" onClick={handleSubmit}>Submit</Button>
+                <Button className="btn btn-med btn-danger btn-block submit-button" onClick={handleSubmit}>Submit</Button>
                 
                 </Form>
                 <a href='/create'>Create Account</a>
