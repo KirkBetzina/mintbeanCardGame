@@ -8,7 +8,9 @@
 # Project Overview
 
 ## Project Links
-- [UX/UI COMP](******)
+- [UX/UI COMP](https://www.figma.com/file/Eh98R8uZONCEMPGLSsVt5i/Rummy-app-Mobile%2FDesktop?node-id=0%3A1)
+
+- [React Architecture](https://www.figma.com/file/ZdZiSfF8F7lnqGkkM1PW3r/React-Architecture-Rummy?node-id=0%3A1)
 
 - [API URL](https://deckofcardsapi.com/)
 
