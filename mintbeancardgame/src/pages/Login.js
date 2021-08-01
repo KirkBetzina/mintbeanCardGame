@@ -3,11 +3,11 @@
     import {useState} from 'react'
     
     
-    const Login = (props) => {
+    const Login = ({user, setUser, getLogin}) => {
     
-        const [user, setUser] =  useState({username: "", password: ""}) 
+        // const [user, setUser] =  useState({username: "", password: ""}) 
         const handleSubmit = () => {
-          props.getLogin(user.username, user.password)
+          getLogin(user.username, user.password)
           
         console.log('handleSubmit')
     

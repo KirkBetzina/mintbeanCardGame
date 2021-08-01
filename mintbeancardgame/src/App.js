@@ -3,9 +3,16 @@ import './App.css';
 import SplashPage from './pages/Splash';
 import Main from './pages/Main'
 import Footer from './components/Footer'
+import Login from './pages/Login';
+import CreateAccount from './pages/CreateAccount';
 import {Switch, Route, Redirect} from 'react-router-dom'
+import {useState} from 'react'
 
-function App() {
+function App(props) {
+
+  const url = process.env.REACT_APP_BACKENDURL
+  const [user, setUser] = useState({name: "", username: "", password: ""})
+
   const getLogin = (username, password) => {
     fetch(url + '/login/' + username + '/' + password)
     .then((response) => response.json())
@@ -62,6 +69,7 @@ const handleCreate = (newUser) => {
           path="/login"
         >
           <Login 
+            user={user}
             setUser={setUser}
             getLogin={getLogin}
           />
@@ -70,6 +78,7 @@ const handleCreate = (newUser) => {
           path="/create"
         >
           <CreateAccount 
+            user={user}
             setUser={setUser}
             handleCreate={handleCreate}
           />

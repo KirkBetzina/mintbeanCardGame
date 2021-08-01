@@ -19,7 +19,7 @@ const AboutUs = () => {
                     </div>
                 </div>
                 <div className='monica'>
-                    <img className='about-images'src='https://media-exp1.licdn.com/dms/image/D4D35AQF1bgtmcCHdMw/profile-framedphoto-shrink_200_200/0/1622062827502?e=1627848000&v=beta&t=FalzvwwWrvzwhAVId4RfcAo_wjbQXdOaK6xcOmkES5c' alt="Monica McLaughlan"/>
+                    <img className='about-images'src='https://media-exp1.licdn.com/dms/image/D4D35AQF1bgtmcCHdMw/profile-framedphoto-shrink_200_200/0/1622062827502?e=1627938000&v=beta&t=1Rio1n49BLkZmSJM16zBwCsBag_LWSGiL3TO4loHrTg' alt="Monica McLaughlan"/>
                     <div className="bio">  
                         <h4>Monica McLaughlan</h4>                      
                         <p>Analytical and imaginative fullstack developer with experience as a leader and team builder. Quick thinking, collaboration and thorough research lead to thoughtful solutions for a beautiful, innovative product.</p>
