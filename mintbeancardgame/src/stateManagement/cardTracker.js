@@ -9,18 +9,18 @@ export const player1Slice = createSlice({
     },
 
     reducers: {
-        addToScore: (state, action)=>{
+        addToScoreP1: (state, action)=>{
             state.score += action.payload;
         },
-        addToHand:(state, action)=>{
+        addToHandP1:(state, action)=>{
             //this assumes action.payload is an array of cards
             state.hand = state.hand.concat(action.payload);
         },
-        discard:(state, action)=>{
+        discardP1:(state, action)=>{
             //assuming action.payload is an array of cards
             state.hand = state.hand.filter((card)=>!action.payload.includes(card));
         },
-        playCards:(state, action)=>{}
+        playCardsP1:(state, action)=>{}
     }
 })
 
@@ -32,18 +32,18 @@ export const player2Slice = createSlice({
     },
 
     reducers: {
-        addToScore: (state, action)=>{
+        addToScoreP2: (state, action)=>{
             state.score += action.payload;
         },
-        addToHand:(state, action)=>{
+        addToHandP2:(state, action)=>{
             //this assumes action.payload is an array of cards
             state.hand = state.hand.concat(action.payload);
         },
-        discard:(state, action)=>{
+        discardP2:(state, action)=>{
             //assuming action.payload is an array of cards
             state.hand = state.hand.filter((card)=>!action.payload.includes(card));
         },
-        playCards:(state, action)=>{}
+        playCardsP2:(state, action)=>{}
     }
 })
 
@@ -57,10 +57,13 @@ export const discardPileSlice = createSlice({
             state.discardPile = state.discardPile.concat(action.payload);
         },
         takeFromDiscard: (state, action)=>{
-            state.discardPile = state.discardPile.fileter((card)=>!action.payload.includes(card))
+            state.discardPile = state.discardPile.filter((card)=>!action.payload.includes(card))
         }
     }
 })
 
 //exports here
+export const {addToDiscard, takeFromDiscard} = discardPileSlice.actions;
+export const {addToHandP1, addToScoreP1, playCardsP1, discardP1} = player1Slice.actions;
+export const {addToHandP2, addToScoreP2, playCardsP2, discardP2} = player2Slice.actions;
 
