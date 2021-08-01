@@ -10,6 +10,7 @@ const ModalInstructions = (props) => {
         return (
           <>
             <Button
+              className="instructions-button"
               color="primary"
               type="button"
               onClick={() => setModalOpen(!modalOpen)}
