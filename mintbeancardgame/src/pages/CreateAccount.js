@@ -3,12 +3,12 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 
-const CreateAccount = ({user, setUser, handleCreate}) => {
-    // const [user, setUser] = useState({name: "", username: "", password: ""})
+const CreateAccount = (props) => {
+    const [user, setUser] = useState({name: "", username: "", password: ""})
 
     const handleSubmit = (event) => {
             event.preventDefault();     // Prevent Form from Refreshing
-            handleCreate(user)    // Submit  desired function
+            props.handleCreate(user)    // Submit  desired function
             
     };
 
