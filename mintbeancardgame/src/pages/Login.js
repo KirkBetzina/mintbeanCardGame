@@ -21,7 +21,7 @@
               [name]: event.target.value
             })
           }
-          React.useEffect(() => {
+          useEffect(() => {
             
           }, []);
       
@@ -32,15 +32,15 @@
                 <Form inline>
                 <FormGroup >
                     <Label for="exampleUsername" hidden>Username</Label>
-                    <Input onChange={handleChange} type="username" name="username" id="exampleUsername" placeholder="Username" />
+                    <Input className='form-input' onChange={handleChange} type="username" name="username" id="exampleUsername" placeholder="Username" />
                 </FormGroup>
                 {' '}
                 <FormGroup >
                     <Label for="examplePassword" hidden>Password</Label>
-                    <Input onChange={handleChange} type="password" name="password" id="examplePassword" placeholder="Password" />
+                    <Input className='form-input' onChange={handleChange} type="password" name="password" id="examplePassword" placeholder="Password" />
                 </FormGroup>
                 {' '}
-                <Button className="btn btn-med btn-danger btn-block" onClick={handleSubmit}>Submit</Button>
+                <Button className="btn btn-med btn-danger btn-block submit-button" onClick={handleSubmit}>Submit</Button>
                 
                 </Form>
                 <a href='/create'>Create Account</a>
@@ -49,23 +49,3 @@
     }
     export default Login
 
-// const Login = () => {
-    
-//     const [login, setLogin] = useState([{}])
-//     const [username, setUsername] = useState('')
-//     const [password, setPassword] = useState('')
-
-//     const onChange = (event) => {
-//         setLogin({...FormData, [event.target.name]: event.target.value})
-//     }
-//     return(
-//        <div className='login'>
-//             <h1>Hey, Login ova heeya!</h1>
-//                 <span className="card-text">
-//                     <input className="mb-2 form-control titleIn" onChange={event => setUsername(event.target.value)} placeholder="Username" />
-//                     <input className="mb-2 form-control desIn " onChange={event => setPassword(event.target.value)} placeholder="Password" />
-//                     <button className="btn btn-outline-primary mx-2 mb-3" style={{'borderRadius':'50px', 'fontWeight': 'bold'}} onClick={}>Login</button>
-//             </span>
-//         </div>
-//     )
-// }
