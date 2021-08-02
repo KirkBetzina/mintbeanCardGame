@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react'
 const Main = () => {
 
     let cardValueMatrix = {
-        "ACE":"11",
-        "KING":"10",
-        "QUEEN":"10",
-        "JACK":"10"
+        "ACE": 11,
+        "KING": 10,
+        "QUEEN": 10,
+        "JACK": 10
     }
 
     //keep track of the deck id
@@ -52,13 +52,15 @@ const Main = () => {
             if (isNaN(card1)) {
                 card1Value = cardValueMatrix[card1]
             }
-            else if (isNaN(card2)) {
+            if (isNaN(card2)) {
                 card2Value = cardValueMatrix[card2]
             } 
+            card1Value = Number(card1Value)
+            card2Value = Number(card2Value)
             if  (card1Value > card2Value) {
-                console.log("player1 wins")
+                console.log("player1 wins", card1Value, card2Value)
             } else if(card2Value > card1Value) {
-                console.log("Computer wins");
+                console.log("Computer wins", card1Value, card2Value);
             } else {
                 console.log("WARRRRRRR!!!!!!!!!", card1Value,card2Value)
             }
@@ -83,8 +85,6 @@ const Main = () => {
             <button onClick={playRound}>Play</button>
            { playerCard ? <img src={playerCard} alt="player card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
            { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
-            
-            
         </div>
     )
 }
