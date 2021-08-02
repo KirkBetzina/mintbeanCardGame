@@ -1,9 +1,81 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 const Main = () => {
+
+    let cardValueMatrix = {
+        "ACE":"11",
+        "KING":"10",
+        "QUEEN":"10",
+        "JACK":"10"
+    }
+
+    //keep track of the deck id
+    const [deckid, setDeckID] = useState(null)
+    //assign cards to player1
+    const [player1, setPlayer1Cards] = useState([])
+    const [player1Pile, setPlayer1Pile] = useState(null)
+
+    const getCards = async () => { 
+        const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+        const data = await response.json()
+        const deckid = data.deck_id
+        setDeckID(deckid)
+        const deal1 = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=26`)
+        const deal1data = await deal1.json()
+        setPlayer1Cards(deal1data.cards)
+
+    }
+
+        useEffect(() => {
+           getCards()
+
+        }, [])
+
+        // console.log(deckid)
+        // console.log(player1)
+        let handleClick = async () => {
+            let cardCodes = player1.map(({code}) => code);
+            let cardCodesSplit = cardCodes.join();
+            //console.log(cardCodesSplit);
+            const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/player1/add/?cards=${cardCodesSplit}`);
+            const data = await response.json();
+            setPlayer1Pile(data);  
+        }
+
+        let calculateWiner = (card1, card2) => {
+            let card1Value = card1
+            let card2Value = card2 
+            if (isNaN(card1)) {
+                card1Value = cardValueMatrix[card1]
+            }
+            else if (isNaN(card2)) {
+                card2Value = cardValueMatrix[card2]
+            } 
+            if  (card1Value > card2Value) {
+                console.log("player1 wins")
+            } else if(card2Value > card1Value) {
+                console.log("Computer wins");
+            } else {
+                console.log("WARRRRRRR!!!!!!!!!", card1Value,card2Value)
+            }
+        }
+
+        let playRound = async () => {
+            let player1Card = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/player1/draw/?count=1`);
+            let dealerCard = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
+            let player1CardData = await player1Card.json();
+            let dealerCardData = await dealerCard.json();
+            calculateWiner(player1CardData.cards[0].value,dealerCardData.cards[0].value);
+
+        };
+    
     return (
         <div>
             <h1>this is the  main pages</h1>
+            <button onClick={handleClick}>Deal</button>
+            <button onClick={playRound}>Play</button>
+            
+            
         </div>
     )
 }
