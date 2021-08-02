@@ -15,6 +15,10 @@ const Main = () => {
     const [player1, setPlayer1Cards] = useState([])
     const [player1Pile, setPlayer1Pile] = useState(null)
 
+    //keep track of which card is being played
+    const [playerCard, setPlayerCard] = useState()
+    const [dealerCard, setDealerCard] = useState()
+
     const getCards = async () => { 
         const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
         const data = await response.json()
@@ -65,7 +69,10 @@ const Main = () => {
             let dealerCard = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
             let player1CardData = await player1Card.json();
             let dealerCardData = await dealerCard.json();
+            // console.log(player1CardData.cards[0], dealerCardData.cards[0])
             calculateWiner(player1CardData.cards[0].value,dealerCardData.cards[0].value);
+            setPlayerCard(player1CardData.cards[0].image)
+            setDealerCard(dealerCardData.cards[0].image)
 
         };
     
@@ -74,6 +81,8 @@ const Main = () => {
             <h1>this is the  main pages</h1>
             <button onClick={handleClick}>Deal</button>
             <button onClick={playRound}>Play</button>
+           { playerCard ? <img src={playerCard} alt="player card"></img> : <p>Let the Games Begin!</p>}
+           { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <p>The Dealer Is READY!</p>}
             
             
         </div>
