@@ -15,9 +15,13 @@ const Main = () => {
     const [player1, setPlayer1Cards] = useState([])
     const [player1Pile, setPlayer1Pile] = useState(null)
 
+    const [roundState,setRoundState] = useState(null);
+    
     //keep track of which card is being played
     const [playerCard, setPlayerCard] = useState()
     const [dealerCard, setDealerCard] = useState()
+
+    //keep track of cards in war scenario
 
     const getCards = async () => { 
         const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
@@ -77,6 +81,10 @@ const Main = () => {
             setDealerCard(dealerCardData.cards[0].image)
 
         };
+
+        const declareWar = async () => { 
+            
+        }
     
     return (
         <div>
