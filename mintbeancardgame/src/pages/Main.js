@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react'
 const Main = () => {
 
     let cardValueMatrix = {
-        "ACE": 11,
-        "KING": 10,
-        "QUEEN": 10,
-        "JACK": 10
+        "ACE": 14,
+        "KING": 13,
+        "QUEEN": 12,
+        "JACK": 11
     }
 
     //keep track of the deck id
