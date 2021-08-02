@@ -35,25 +35,15 @@ const ModalInstructions = (props) => {
                   <p><strong>Card Ranking</strong></p>
                   <p>K(high), Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, A(low)</p>
                   <p><strong>The Deal</strong></p>
-                  <p>Dealer gives each player one card at a time, each player is given 7 cards</p>
-                  <p>Remaining cards are placed face down on the table to form the draw pile</p>
-                  <p>Top card is removed from the draw pile and placed face up next to the draw pile and becomes the first card in the discard pile</p>
-                <p><strong>Object of the Game</strong></p>
-                <p>Each player forms matched sets consisting of groups of three or four of a kind, or sequences of three or more cards of the same suit</p>
+                  <p>The deck is divided evenly, with each player receiving 26 cards, dealt one at a timer face down, in front of them.</p>
                 <p><strong>The Play</strong></p>
-                <p>Players may either draw the top card off the draw pile or the top card of the discard pile and add it to their hand</p>
-                <p>Players may also lay down a matched set on the table.  If the player cannot lay down a matched set, they discard one card face up on the discard pile.</p>
-                <p>The player may not discard the same card drawn from the draw pile on that turn</p>
-                <p><strong>Laying Off</strong></p>
-                <p>Player may add one or more from their hand to any matched set on the table. </p>
-                <p>Examples: if there are threes present, may add the fourth three; if 10, 9, 8 are present, they may add J, Q or 7, 6 of the same suit </p>
-                <p><strong>Going Out</strong></p>
-                <p>When a player gets rid of all their cards, they WIN the game!</p>
-                <p>If all of their remaining cards are matched, the player may lay them down without discarding on their last turn.  This will end the game. </p>
-                <p>If the last card of the draw pile has been drawn and no player is out, the next player may either take the top card on the discard pile or may turn the discard pile over to form a new stock draw pile (without shuffling) and draw the top card.  Play then continues as before. </p>
+                <p>Each player turns up a card at the same time and the player with the higher card takes both cards and puts them, face down, on the bottom of his stack.</p> 
+                <p>If the cards are the same rank, it is War. Each player turns up one card face down and one card face up.</p>
+                <p>The player with the higher cards takes both piles (six cards).</p>
+                <p>If the turned-up cards are again the same rank, each player places another card face down and turns another card face up.</p>
+                <p>The player with the higher card takes all 10 cards, and so on.</p>
                 <p><strong>Scoring</strong></p>
-                <p>Each player pays to the winner the pip value of the cards remaining in their hand.  Face cards count 10 each, aces 1 each, and every other card its pip value.</p>
-                <p>A player goes "rummy" when they get rid of all their cards in their hand at once, without having laid down any cards previusly. If this occurs, every other player pays double, twice the pip value of each card remaining in their hand.</p>
+                <p>The game ends when one player has won all the cards.</p>
                 </ModalBody>
               <ModalFooter>
                 <Button

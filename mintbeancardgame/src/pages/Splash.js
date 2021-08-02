@@ -7,7 +7,7 @@ const SplashPage = (props) => {
     return (
         <>
         <div className='welcome-header'>
-            <h1 >Let's Play Some Rummy</h1>
+            <h1 >Let's Play Some WARRRRRRRRRR!!!!!!!!!</h1>
         </div>
         <ModalInstructions/>
         <Link to='/play'><button className="btn btn-med btn-primary btn-block start-button">START</button></Link>

@@ -5,22 +5,23 @@ import Main from './pages/Main'
 import Footer from './components/Footer'
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
-import {Switch, Route, Redirect} from 'react-router-dom'
+import {Switch, Route, Redirect, useHistory} from 'react-router-dom'
 import {useState} from 'react'
 
 function App(props) {
-
+  const history = useHistory()
   const url = process.env.REACT_APP_BACKENDURL
   const [user, setUser] = useState({name: "", username: "", password: ""})
 
   const getLogin = (username, password) => {
-    fetch(url + '/login/' + username + '/' + password)
+    fetch(url + '/login' + username + '/' + password)
     .then((response) => response.json())
     .then((data) => {
       setUser(data);
+      console.log("setUser DATA", setUser(data))
       if (data.status === 200)
       {
-        setUser("Need to figure out the props for setUser")
+        setUser()
         props.history.push('/home')
       } else if (data.status === 409) {
         alert('username does not exist')
@@ -35,7 +36,7 @@ function App(props) {
 
   //handle create for the form
 const handleCreate = (newUser) => {
-  fetch(url + "/user", {
+  fetch(url + "/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -47,11 +48,11 @@ const handleCreate = (newUser) => {
     if(data.status === 200)
     {
     setUser(data.data._id)
-    props.history.push('/home')
+    history.push('/')
   
   } else if (data.status === 403) {
     alert('username already exists')
-    props.history.push('/login')
+    history.push('/login')
   }
 
   })
