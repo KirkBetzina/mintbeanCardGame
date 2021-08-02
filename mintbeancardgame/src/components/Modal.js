@@ -33,7 +33,7 @@ const ModalInstructions = (props) => {
               </div>
               <ModalBody> 
                   <p><strong>Card Ranking</strong></p>
-                  <p>K(high), Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, A(low)</p>
+                  <p>A(high),K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2(low)</p>
                   <p><strong>The Deal</strong></p>
                   <p>The deck is divided evenly, with each player receiving 26 cards, dealt one at a timer face down, in front of them.</p>
                 <p><strong>The Play</strong></p>
