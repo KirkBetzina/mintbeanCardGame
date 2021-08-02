@@ -81,8 +81,8 @@ const Main = () => {
             <h1>this is the  main pages</h1>
             <button onClick={handleClick}>Deal</button>
             <button onClick={playRound}>Play</button>
-           { playerCard ? <img src={playerCard} alt="player card"></img> : <p>Let the Games Begin!</p>}
-           { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <p>The Dealer Is READY!</p>}
+           { playerCard ? <img src={playerCard} alt="player card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
+           { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
             
             
         </div>
