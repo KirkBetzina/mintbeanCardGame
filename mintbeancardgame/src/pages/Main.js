@@ -51,12 +51,12 @@ const Main = () => {
 
         let playRound = async () => {
             let player1Card = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
-            let dealerCard = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
+            let computerCard = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
             let player1CardData = await player1Card.json();
-            let dealerCardData = await dealerCard.json();
+            let dealerCardData = await computerCard.json();
             calculateWinner(player1CardData.cards[0].value,player1CardData.cards[0].code,dealerCardData.cards[0].value,dealerCardData.cards[0].code);
             // setDealerCard(dealerCardData.cards[0].image)
-            dispatch(addToHandP2(dealerCardData.cards[0].img))
+            dispatch(addToHandP2(dealerCardData.cards[0].image))
             // setPlayerCard(player1CardData.cards[0].image)
             dispatch(addToHandP1([player1CardData.cards[0].image]))
         };
