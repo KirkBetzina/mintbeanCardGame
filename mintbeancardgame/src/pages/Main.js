@@ -55,9 +55,9 @@ const Main = () => {
             let player1CardData = await player1Card.json();
             let dealerCardData = await computerCard.json();
             calculateWinner(player1CardData.cards[0].value,player1CardData.cards[0].code,dealerCardData.cards[0].value,dealerCardData.cards[0].code);
-            // setDealerCard(dealerCardData.cards[0].image)
+            
             dispatch(addToHandP2(dealerCardData.cards[0].image))
-            // setPlayerCard(player1CardData.cards[0].image)
+            
             dispatch(addToHandP1([player1CardData.cards[0].image]))
         };
 
@@ -77,14 +77,14 @@ const Main = () => {
             card2Value = Number(card2Value)
             if  (card1Value > card2Value) {
                 // player1Score++;
-                dispatch(addToScoreP1(1))
+                dispatch(addToScoreP1(playerCard.length+dealerCard.length))
                 addCardToPile(cardCodes, "player1")
                 console.log(`player1 wins`, card1Value, card2Value)
                 dispatch(clearHandP1())
                 dispatch(clearHandP2())
             } else if(card2Value > card1Value) {
                 // computerScore++;
-                dispatch(addToScoreP2(1))
+                dispatch(addToScoreP2(playerCard.length+dealerCard.length))
                 addCardToPile(cardCodes, "computer")                
                 console.log(`Computer wins`, card1Value, card2Value);
                 dispatch(clearHandP1())
@@ -122,7 +122,6 @@ const Main = () => {
             <h1>Let's Play War</h1>
            { playerCard.length > 0 ? playerCard.map((card)=><img src={card} alt="player card"></img>): <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
            <hr></hr>
-           {/* { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>} */}
            { dealerCard.length >0 ? dealerCard.map((card)=><img src={card} alt="dealer card"></img>) : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
         
         </div>
