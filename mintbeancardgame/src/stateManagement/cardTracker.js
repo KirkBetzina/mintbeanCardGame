@@ -16,6 +16,10 @@ export const player1Slice = createSlice({
             //this assumes action.payload is an array of cards
             state.hand = state.hand.concat(action.payload);
         },
+        clearHandP1:(state, action)=>{
+            //this assumes action.payload is an array of cards
+            state.hand = [];
+        },
         discardP1:(state, action)=>{
             //assuming action.payload is an array of cards
             state.hand = state.hand.filter((card)=>!action.payload.includes(card));
@@ -38,6 +42,10 @@ export const player2Slice = createSlice({
         addToHandP2:(state, action)=>{
             //this assumes action.payload is an array of cards
             state.hand = state.hand.concat(action.payload);
+        },
+        clearHandP2:(state, action)=>{
+            //this assumes action.payload is an array of cards
+            state.hand = [];
         },
         discardP2:(state, action)=>{
             //assuming action.payload is an array of cards
@@ -64,6 +72,6 @@ export const discardPileSlice = createSlice({
 
 //exports here
 export const {addToDiscard, takeFromDiscard} = discardPileSlice.actions;
-export const {addToHandP1, addToScoreP1, playCardsP1, discardP1} = player1Slice.actions;
-export const {addToHandP2, addToScoreP2, playCardsP2, discardP2} = player2Slice.actions;
+export const {addToHandP1, addToScoreP1, playCardsP1, clearHandP1, discardP1} = player1Slice.actions;
+export const {addToHandP2, addToScoreP2, playCardsP2, clearHandP2, discardP2} = player2Slice.actions;
 
