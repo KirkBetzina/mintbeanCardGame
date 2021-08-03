@@ -11,7 +11,7 @@ const SplashPage = (props) => {
         </div>
         <ModalInstructions/>
         <Link to='/play'><button className="btn btn-med btn-primary btn-block start-button">START</button></Link>
-        <Login />
+        <Login  user={props.user} setUser={props.setUser} getLogin={props.getLogin} />
         </>   
     )
 
