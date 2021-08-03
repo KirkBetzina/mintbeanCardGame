@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react'
 
+let warCards = [];
+let winner = "";
+let player1Score = 0;
+let computerScore = 0;
+
 const Main = () => {
 
     let cardValueMatrix = {
@@ -9,83 +14,98 @@ const Main = () => {
         "JACK": 11
     }
 
-    //keep track of the deck id
-    const [deckid, setDeckID] = useState(null)
-    //assign cards to player1
-    const [player1, setPlayer1Cards] = useState([])
-    const [player1Pile, setPlayer1Pile] = useState(null)
+    const [deckid, setDeckID] = useState(null);
 
     //keep track of which card is being played
-    const [playerCard, setPlayerCard] = useState()
-    const [dealerCard, setDealerCard] = useState()
+    const [playerCard, setPlayerCard] = useState();
+    const [dealerCard, setDealerCard] = useState();
+    const [piles, setPiles] = useState(null)
+    const [gameOver, setGameOver] = useState(false);
+
+    //keep track of cards in war scenario
+
 
     const getCards = async () => { 
-        const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-        const data = await response.json()
-        const deckid = data.deck_id
-        setDeckID(deckid)
-        const deal1 = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=26`)
-        const deal1data = await deal1.json()
-        setPlayer1Cards(deal1data.cards)
+        const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
+        const data = await response.json();
+        const deckid = data.deck_id;
+        setDeckID(deckid);
 
     }
 
         useEffect(() => {
            getCards()
-
-        }, [])
-
-        // console.log(deckid)
-        // console.log(player1)
-        let handleClick = async () => {
-            let cardCodes = player1.map(({code}) => code);
-            let cardCodesSplit = cardCodes.join();
-            //console.log(cardCodesSplit);
-            const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/player1/add/?cards=${cardCodesSplit}`);
-            const data = await response.json();
-            setPlayer1Pile(data);  
-        }
-
-        let calculateWiner = (card1, card2) => {
-            let card1Value = card1
-            let card2Value = card2 
-            if (isNaN(card1)) {
-                card1Value = cardValueMatrix[card1]
-            }
-            if (isNaN(card2)) {
-                card2Value = cardValueMatrix[card2]
-            } 
-            card1Value = Number(card1Value)
-            card2Value = Number(card2Value)
-            if  (card1Value > card2Value) {
-                console.log("player1 wins", card1Value, card2Value)
-            } else if(card2Value > card1Value) {
-                console.log("Computer wins", card1Value, card2Value);
-            } else {
-                console.log("WARRRRRRR!!!!!!!!!", card1Value,card2Value)
-            }
-        }
+        }, []);
 
         let playRound = async () => {
-            let player1Card = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/player1/draw/?count=1`);
+            let player1Card = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
             let dealerCard = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=1`);
             let player1CardData = await player1Card.json();
             let dealerCardData = await dealerCard.json();
-            // console.log(player1CardData.cards[0], dealerCardData.cards[0])
-            calculateWiner(player1CardData.cards[0].value,dealerCardData.cards[0].value);
-            setPlayerCard(player1CardData.cards[0].image)
+            calculateWinner(player1CardData.cards[0].value,player1CardData.cards[0].code,dealerCardData.cards[0].value,dealerCardData.cards[0].code);
             setDealerCard(dealerCardData.cards[0].image)
-
+            setPlayerCard(player1CardData.cards[0].image)
         };
+
+
+
+        let calculateWinner = (player1Card, player1CardCode, computerCard, computerCardCode) => {
+            let card1Value = player1Card;
+            let card2Value = computerCard; 
+            let cardCodes = [...warCards,computerCardCode,player1CardCode]
+            if (isNaN(player1Card)) {
+                card1Value = cardValueMatrix[player1Card];
+            };
+            if (isNaN(computerCard)) {
+                card2Value = cardValueMatrix[computerCard];
+            };
+            card1Value = Number(card1Value)
+            card2Value = Number(card2Value)
+            if  (card1Value > card2Value) {
+                player1Score++;
+                addCardToPile(cardCodes, "player1")
+                console.log(`player1 wins`, card1Value, card2Value)
+            } else if(card2Value > card1Value) {
+                computerScore++;
+                addCardToPile(cardCodes, "computer")                
+                console.log(`Computer wins`, card1Value, card2Value);
+            } else {
+                alert("War!, Playing out", String(card1Value) , String(card2Value));
+                warCards.push(player1CardCode,computerCardCode);
+                playRound();
+            }
+        }
+
+        let addCardToPile = async (cardCodes, winnerName) => {
+            let cardsToAdd = cardCodes.join();
+            let addResponse = await fetch(`https://deckofcardsapi.com/api/deck/${deckid}/pile/${winnerName}/add/?cards=${cardsToAdd}`);
+            let addData = await addResponse.json();
+            console.log(addData.remaining);
+            if (addData.remaining == 0) {
+                setGameOver(true);
+                if (player1Score > computerScore) {
+                    winner = "You win!";
+                } else if (computerScore > player1Score) {
+                    winner = "You lose!";
+                } else {
+                    winner = "Tie!";
+                }
+            }
+            setPiles(addData);
+            console.log(piles);
+            warCards = []
+        }
     
     return (
         <div>
-            <h1>this is the  main pages</h1>
-            <button onClick={handleClick}>Deal</button>
-            <button onClick={playRound}>Play</button>
+            {gameOver ? <h1>Game Over, {winner}</h1> : <button onClick={playRound}>Go to war!</button>}
+            <h1>Let's Play War</h1>
+
            { playerCard ? <img src={playerCard} alt="player card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
            { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
+        
         </div>
     )
 }
+
 export default Main
