@@ -54,6 +54,10 @@ We are excited to develop a Rummy for Dummies card game app. Have you ever had a
 ## Wireframes/ UX DESIGN COMP
 
 
+## Screenshots
+
+
+## Dev Story
 
 
 
@@ -84,6 +88,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 ## Additional Libraries
 Reactstrap or bootstrap for modals and warnings 
+Redux-Toolkit for state management
 
 ## Code Snippet
 
