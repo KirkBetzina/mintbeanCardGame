@@ -1,11 +1,21 @@
 import React, {useEffect, useState} from 'react'
+import { useSelector, useDispatch } from 'react-redux';    
+import { addToDiscard, addToHandP1, addToHandP2, addToScoreP1, addToScoreP2, clearHandP1, clearHandP2, takeFromDiscard } from '../stateManagement/cardTracker';
 
-let warCards = [];
-let winner = "";
-let player1Score = 0;
-let computerScore = 0;
+
+// let warCards = [];
+// let winner = "";
+// let player1Score = useSelector((state)=>state.player1.player1Score);
+// let computerScore = useSelector((state)=>state.player2.player2Score);
+// const dispatch = useDispatch;
 
 const Main = () => {
+
+    let warCards = [];
+    let winner = "";
+    let player1Score = useSelector((state)=>state.player1.player1Score);
+    let computerScore = useSelector((state)=>state.player2.player2Score);
+    const dispatch = useDispatch();
 
     let cardValueMatrix = {
         "ACE": 14,
@@ -17,8 +27,10 @@ const Main = () => {
     const [deckid, setDeckID] = useState(null);
 
     //keep track of which card is being played
-    const [playerCard, setPlayerCard] = useState();
-    const [dealerCard, setDealerCard] = useState();
+    // const [playerCard, setPlayerCard] = useState();
+    const playerCard = useSelector((state)=>state.player1.hand)
+    // const [dealerCard, setDealerCard] = useState();
+    const dealerCard = useSelector((state)=>state.player2.hand)
     const [piles, setPiles] = useState(null)
     const [gameOver, setGameOver] = useState(false);
 
@@ -43,8 +55,10 @@ const Main = () => {
             let player1CardData = await player1Card.json();
             let dealerCardData = await dealerCard.json();
             calculateWinner(player1CardData.cards[0].value,player1CardData.cards[0].code,dealerCardData.cards[0].value,dealerCardData.cards[0].code);
-            setDealerCard(dealerCardData.cards[0].image)
-            setPlayerCard(player1CardData.cards[0].image)
+            // setDealerCard(dealerCardData.cards[0].image)
+            dispatch(addToHandP2(dealerCardData.cards[0].img))
+            // setPlayerCard(player1CardData.cards[0].image)
+            dispatch(addToHandP1([player1CardData.cards[0].image]))
         };
 
 
@@ -62,13 +76,19 @@ const Main = () => {
             card1Value = Number(card1Value)
             card2Value = Number(card2Value)
             if  (card1Value > card2Value) {
-                player1Score++;
+                // player1Score++;
+                dispatch(addToScoreP1(1))
                 addCardToPile(cardCodes, "player1")
                 console.log(`player1 wins`, card1Value, card2Value)
+                dispatch(clearHandP1())
+                dispatch(clearHandP2())
             } else if(card2Value > card1Value) {
-                computerScore++;
+                // computerScore++;
+                dispatch(addToScoreP2(1))
                 addCardToPile(cardCodes, "computer")                
                 console.log(`Computer wins`, card1Value, card2Value);
+                dispatch(clearHandP1())
+                dispatch(clearHandP2())
             } else {
                 alert("War!, Playing out", String(card1Value) , String(card2Value));
                 warCards.push(player1CardCode,computerCardCode);
@@ -100,9 +120,10 @@ const Main = () => {
         <div>
             {gameOver ? <h1>Game Over, {winner}</h1> : <button onClick={playRound}>Go to war!</button>}
             <h1>Let's Play War</h1>
-
-           { playerCard ? <img src={playerCard} alt="player card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
-           { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
+           { playerCard.length > 0 ? playerCard.map((card)=><img src={card} alt="player card"></img>): <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
+           <hr></hr>
+           {/* { dealerCard ? <img src={dealerCard} alt="dealer card"></img> : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>} */}
+           { dealerCard.length >0 ? dealerCard.map((card)=><img src={card} alt="dealer card"></img>) : <img src="https://www.vanishingincmagic.com/gallery/photos/jumbo-bicycle-card-blank-face-blue-backed-1.jpg" alt="blue playing card"></img>}
         
         </div>
     )
