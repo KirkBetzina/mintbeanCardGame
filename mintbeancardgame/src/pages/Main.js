@@ -3,12 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addToDiscard, addToHandP1, addToHandP2, addToScoreP1, addToScoreP2, clearHandP1, clearHandP2, takeFromDiscard } from '../stateManagement/cardTracker';
 
 
-// let warCards = [];
-// let winner = "";
-// let player1Score = useSelector((state)=>state.player1.player1Score);
-// let computerScore = useSelector((state)=>state.player2.player2Score);
-// const dispatch = useDispatch;
-
 const Main = () => {
 
     let warCards = [];
@@ -27,15 +21,10 @@ const Main = () => {
     const [deckid, setDeckID] = useState(null);
 
     //keep track of which card is being played
-    // const [playerCard, setPlayerCard] = useState();
     const playerCard = useSelector((state)=>state.player1.hand)
-    // const [dealerCard, setDealerCard] = useState();
     const dealerCard = useSelector((state)=>state.player2.hand)
     const [piles, setPiles] = useState(null)
     const [gameOver, setGameOver] = useState(false);
-
-    //keep track of cards in war scenario
-
 
     const getCards = async () => { 
         const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
@@ -55,9 +44,7 @@ const Main = () => {
             let player1CardData = await player1Card.json();
             let dealerCardData = await computerCard.json();
             calculateWinner(player1CardData.cards[0].value,player1CardData.cards[0].code,dealerCardData.cards[0].value,dealerCardData.cards[0].code);
-            
             dispatch(addToHandP2(dealerCardData.cards[0].image))
-            
             dispatch(addToHandP1([player1CardData.cards[0].image]))
         };
 
@@ -76,14 +63,13 @@ const Main = () => {
             card1Value = Number(card1Value)
             card2Value = Number(card2Value)
             if  (card1Value > card2Value) {
-                // player1Score++;
                 dispatch(addToScoreP1(playerCard.length+dealerCard.length))
                 addCardToPile(cardCodes, "player1")
                 console.log(`player1 wins`, card1Value, card2Value)
                 dispatch(clearHandP1())
                 dispatch(clearHandP2())
             } else if(card2Value > card1Value) {
-                // computerScore++;
+                
                 dispatch(addToScoreP2(playerCard.length+dealerCard.length))
                 addCardToPile(cardCodes, "computer")                
                 console.log(`Computer wins`, card1Value, card2Value);
