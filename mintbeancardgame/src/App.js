@@ -6,9 +6,10 @@ import Footer from './components/Footer'
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import {Switch, Route, Redirect, useHistory} from 'react-router-dom'
-import {useState} from 'react'
+import React, {useState} from 'react'
 
 function App(props) {
+
   const history = useHistory()
   const url = process.env.REACT_APP_BACKENDURL
   const [user, setUser] = useState({name: "", username: "", password: ""})
@@ -64,7 +65,7 @@ const handleCreate = (newUser) => {
         <Redirect to='/login' />
         </Route>  */}
       <Route exact path='/'>
-        <SplashPage />
+        <SplashPage user={user} setUser={setUser} getLogin={getLogin} />
       </Route>
       <Route
           path="/login"

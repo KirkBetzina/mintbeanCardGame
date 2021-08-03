@@ -14,8 +14,8 @@
     
       }
         const handleChange = (event) => {
-            console.log('handleChange - value', event.target.value)
-            console.log('handleChange - name', event.target.name)
+            // console.log('handleChange - value', event.target.value)
+            // console.log('handleChange - name', event.target.name)
             const name = event.target.name 
             setUser({
               ...user,
@@ -23,7 +23,6 @@
             })
           }
           useEffect(() => {
-            
           }, []);
       
         
